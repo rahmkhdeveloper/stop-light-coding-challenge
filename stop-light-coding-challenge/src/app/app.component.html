@@ -1,0 +1,18 @@
+<div style="text-align:center">
+  <h1>{{title}}</h1>
+
+  <!--shows messages based on signal switch-->
+  <div *ngFor="let signal of signals">
+    <span *ngIf="signal.switch" [ngStyle]="{'color' : signal.color}" class="directions">{{signal.message}}</span>
+  </div><br>
+
+  <!--change color based on signal switch after a perticular time-->
+  <div *ngFor="let signal of signals">
+    <br><span [ngStyle]="{'color': (signal.switch == true) ? signal.color : 'grey', 'fontSize': '100px'}" class="fa fa-gear"></span><br>
+  </div><br><br>
+
+  <!--change color based on signal switch on button click-->
+  <button [ngClass]="{'btn btn-danger':toggle, 'btn btn-success':!toggle}" on-click="switchColor(toggle)">
+    <span [innerHTML]="(toggle) ? signals[0].message : signals[2].message"></span>
+  </button>
+<div>
